@@ -12,27 +12,27 @@
 </head>
 <body class="bg-slate-50 text-slate-800">
 
-  <!-- แถบเมนูเลือกกลุ่มธุรกิจ & สลับหน้าบ้าน/หลังบ้าน (อยู่ในลิงก์เดียว) -->
+  <!-- แถบควบคุมหลักด้านบน (เลือก 4 กลุ่มธุรกิจ & สลับหน้าบ้าน/หลังบ้าน) -->
   <div class="sticky top-0 z-50 bg-slate-900 text-white shadow-lg border-b border-slate-700">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col lg:flex-row items-center justify-between gap-3">
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-col lg:flex-row items-center justify-between gap-2.5">
       <div class="flex items-center gap-2 shrink-0">
-        <span class="bg-emerald-500 text-slate-950 text-xs font-bold px-2.5 py-1 rounded-full">LIVE DEMO</span>
+        <span class="bg-emerald-500 text-slate-950 text-xs font-bold px-2.5 py-0.5 rounded-full">LIVE DEMO</span>
         <span class="text-xs sm:text-sm font-medium text-slate-200">เว็บธุรกิจ + หลังบ้าน <strong class="text-amber-400">5,000.-</strong></span>
       </div>
 
       <!-- เมนูเลือก 4 กลุ่มหลักของกาญจนบุรี -->
-      <nav aria-label="หมวดหมู่ธุรกิจตัวอย่าง" class="flex flex-wrap items-center justify-center gap-1.5 bg-slate-800 p-1 rounded-xl">
-        <button onclick="switchBusiness('resort')" id="btn-resort" class="biz-btn px-3 py-1.5 rounded-lg text-xs font-medium transition">1. รีสอร์ต / แพพัก</button>
-        <button onclick="switchBusiness('shop')" id="btn-shop" class="biz-btn px-3 py-1.5 rounded-lg text-xs font-medium transition">2. ร้านของฝาก / คาเฟ่</button>
-        <button onclick="switchBusiness('service')" id="btn-service" class="biz-btn px-3 py-1.5 rounded-lg text-xs font-medium transition">3. ผู้รับเหมา / บริการ</button>
-        <button onclick="switchBusiness('agri')" id="btn-agri" class="biz-btn px-3 py-1.5 rounded-lg text-xs font-medium transition">4. รับซื้ออ้อย / มัน</button>
+      <nav aria-label="หมวดหมู่ธุรกิจตัวอย่าง" class="flex flex-wrap items-center justify-center gap-1 bg-slate-800 p-1 rounded-xl">
+        <button onclick="switchBusiness('resort')" id="btn-resort" class="biz-btn px-2.5 py-1.5 rounded-lg text-xs font-medium transition">1. รีสอร์ต / แพพัก</button>
+        <button onclick="switchBusiness('shop')" id="btn-shop" class="biz-btn px-2.5 py-1.5 rounded-lg text-xs font-medium transition">2. ร้านของฝาก / คาเฟ่</button>
+        <button onclick="switchBusiness('service')" id="btn-service" class="biz-btn px-2.5 py-1.5 rounded-lg text-xs font-medium transition">3. ผู้รับเหมา / บริการ</button>
+        <button onclick="switchBusiness('agri')" id="btn-agri" class="biz-btn px-2.5 py-1.5 rounded-lg text-xs font-medium transition">4. รับซื้ออ้อย / มัน</button>
       </nav>
 
       <!-- ปุ่มสลับหน้าบ้าน / หลังบ้าน -->
       <div class="flex items-center gap-2 shrink-0">
-        <button onclick="setMode('front')" id="mode-front" class="px-3 py-1.5 rounded-lg text-xs font-semibold transition">หน้าเว็บลูกค้า</button>
+        <button onclick="setMode('front')" id="mode-front" class="px-3 py-1.5 rounded-lg text-xs font-semibold transition">🌐 หน้าเว็บลูกค้า</button>
         <button onclick="setMode('admin')" id="mode-admin" class="px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1">
-          ⚙️ หลังบ้านจำลอง
+          ⚙️ ระบบหลังบ้าน (Admin)
         </button>
       </div>
     </div>
@@ -43,8 +43,11 @@
     <header class="bg-white shadow-sm">
       <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center gap-3">
         <div>
-          <h1 id="site-name" class="text-lg sm:text-2xl font-bold text-slate-900"></h1>
-          <p id="site-location" class="text-xs text-slate-500"></p>
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 id="site-name" class="text-lg sm:text-2xl font-bold text-slate-900"></h1>
+            <span id="site-status-badge" class="text-xs font-semibold px-2.5 py-0.5 rounded-full"></span>
+          </div>
+          <p id="site-location" class="text-xs text-slate-500 mt-0.5"></p>
         </div>
         <div class="flex items-center gap-2 shrink-0">
           <a id="site-tel-link" href="tel:0971451628" class="hidden sm:inline-flex items-center gap-1 px-3.5 py-2 rounded-lg border border-slate-300 text-xs sm:text-sm font-medium hover:bg-slate-100">
@@ -67,7 +70,7 @@
         <div class="pt-3 flex flex-wrap justify-center gap-3">
           <a href="#items-section" id="hero-cta-primary" class="px-5 py-3 bg-white text-slate-900 font-semibold rounded-xl shadow hover:bg-slate-100 text-xs sm:text-sm"></a>
           <button onclick="setMode('admin')" class="px-5 py-3 bg-slate-800/90 border border-slate-600 text-white font-medium rounded-xl hover:bg-slate-800 text-xs sm:text-sm">
-            ⚙️ ลองแก้ราคา/รายการในหลังบ้าน
+            ⚙️ เปิดดูเมนูหลังบ้านฝั่งซ้าย
           </button>
         </div>
       </div>
@@ -81,7 +84,7 @@
           <p id="section-sub" class="text-xs sm:text-sm text-slate-500"></p>
         </div>
         <span class="text-xs text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 self-start md:self-auto">
-          💡 เจ้าของกิจการอัปเดตราคา/เรทรับซื้อเองได้ตลอด 24 ชม.
+          💡 อัปเดตข้อมูลและราคาจากระบบหลังบ้านได้ตลอด 24 ชม.
         </span>
       </div>
 
@@ -109,81 +112,221 @@
     </section>
   </div>
 
-  <!-- ================= ฝั่งหลังบ้าน (ADMIN DEMO) ================= -->
-  <div id="admin-view" class="hidden max-w-5xl mx-auto px-4 py-10">
-    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-      <div class="bg-slate-800 text-white px-6 py-4 flex flex-wrap justify-between items-center gap-3">
+  <!-- ================= ฝั่งหลังบ้าน (ADMIN DASHBOARD WITH LEFT SIDEBAR) ================= -->
+  <div id="admin-view" class="hidden min-h-[calc(100vh-105px)] bg-slate-100">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row min-h-[calc(100vh-105px)]">
+
+      <!-- เมนูฝั่งซ้าย (Left Sidebar) -->
+      <aside class="w-full md:w-64 bg-slate-900 text-slate-200 flex flex-col justify-between shrink-0 border-r border-slate-800">
         <div>
-          <h2 class="text-base sm:text-lg font-bold">⚙️ ระบบหลังบ้านจำลอง — หมวด: <span id="admin-biz-label" class="text-amber-400"></span></h2>
-          <p class="text-xs text-slate-300">ทดลองแก้หัวข้อ เพิ่ม หรือลบรายการ แล้วกด "หน้าเว็บลูกค้า" เพื่อดูผลทันที</p>
-        </div>
-        <button onclick="resetDemoData()" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg">
-          รีเซ็ตข้อมูลตัวอย่าง
-        </button>
-      </div>
-
-      <div class="p-6 space-y-8">
-        <div class="space-y-4">
-          <h3 class="font-bold text-slate-800 border-b pb-2">1. แก้ไขชื่อกิจการ & ข้อความหน้าแรก</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-medium text-slate-600 mb-1">ชื่อกิจการ / ร้านค้า</label>
-              <input id="edit-name" type="text" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" />
-            </div>
-            <div>
-              <label class="block text-xs font-medium text-slate-600 mb-1">ป้ายไฮไลต์ / โปรโมชัน (Badge)</label>
-              <input id="edit-badge" type="text" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" />
-            </div>
-            <div class="md:col-span-2">
-              <label class="block text-xs font-medium text-slate-600 mb-1">หัวข้อหลักหน้าแรก</label>
-              <input id="edit-title" type="text" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" />
-            </div>
-            <div>
-              <label class="block text-xs font-medium text-slate-600 mb-1">เบอร์โทรศัพท์</label>
-              <input id="edit-phone" type="text" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" />
-            </div>
-            <div>
-              <label class="block text-xs font-medium text-slate-600 mb-1">LINE ID</label>
-              <input id="edit-line" type="text" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" />
-            </div>
+          <!-- หัว Sidebar -->
+          <div class="p-4 border-b border-slate-800">
+            <p class="text-[11px] uppercase tracking-wider text-slate-400">ระบบจัดการเว็บไซต์</p>
+            <p id="sidebar-biz-name" class="text-sm font-bold text-white truncate mt-0.5"></p>
+            <span id="sidebar-biz-tag" class="inline-block mt-1.5 text-[11px] bg-slate-800 text-amber-400 px-2 py-0.5 rounded"></span>
           </div>
-          <button onclick="saveStoreInfo()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-5 py-2 rounded-lg">
-            บันทึกข้อมูลกิจการ
+
+          <!-- เมนูหลักฝั่งซ้าย -->
+          <nav aria-label="เมนูระบบหลังบ้าน" class="p-3 space-y-1">
+            <button onclick="switchAdminTab('dashboard')" id="tab-dashboard" class="admin-nav-btn w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition text-left">
+              <span>📊</span>
+              <span>ภาพรวมระบบ</span>
+            </button>
+            <button onclick="switchAdminTab('items')" id="tab-items" class="admin-nav-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition text-left">
+              <span class="flex items-center gap-2.5"><span>📦</span><span>จัดการรายการ / ราคา</span></span>
+              <span id="sidebar-item-count" class="text-[11px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full">0</span>
+            </button>
+            <button onclick="switchAdminTab('banner')" id="tab-banner" class="admin-nav-btn w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition text-left">
+              <span>🖼️</span>
+              <span>แบนเนอร์ & โปรโมชัน</span>
+            </button>
+          </nav>
+        </div>
+
+        <!-- เมนูล่างสุดของ Sidebar (ตั้งค่า & ดูหน้าเว็บ) -->
+        <div class="p-3 border-t border-slate-800 space-y-1 bg-slate-950/40">
+          <button onclick="switchAdminTab('settings')" id="tab-settings" class="admin-nav-btn w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition text-left">
+            <span>⚙️</span>
+            <span>ตั้งค่าเว็บไซต์ & ติดต่อ</span>
+          </button>
+          <button onclick="setMode('front')" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs text-emerald-400 hover:bg-slate-800 transition text-left">
+            <span>↗️</span>
+            <span>ดูผลลัพธ์หน้าเว็บจริง</span>
           </button>
         </div>
+      </aside>
 
-        <div class="space-y-4">
-          <h3 class="font-bold text-slate-800 border-b pb-2">2. เพิ่มรายการ / ราคา / เรทรับซื้อใหม่</h3>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- พื้นที่ทำงานหลักฝั่งขวา (Main Content Panel) -->
+      <main class="flex-1 p-4 sm:p-6 md:p-8">
+
+        <!-- TAB 1: ภาพรวมระบบ (Dashboard) -->
+        <section id="panel-dashboard" class="admin-panel space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <label class="block text-xs font-medium text-slate-600 mb-1">ชื่อรายการ</label>
-              <input id="new-item-title" type="text" placeholder="เช่น อ้อยสดตัดสะอาด / แพริมน้ำ" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+              <h2 class="text-xl font-bold text-slate-900">📊 ภาพรวมระบบหลังบ้าน</h2>
+              <p class="text-xs text-slate-500">จัดการข้อมูลทั้งหมดได้ในที่เดียว อัปเดตขึ้นหน้าเว็บทันที</p>
             </div>
-            <div>
-              <label class="block text-xs font-medium text-slate-600 mb-1">ราคา / เรทราคา</label>
-              <input id="new-item-price" type="text" placeholder="เช่น 1,350 บาท / ตัน" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+            <button onclick="switchAdminTab('items')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-4 py-2 rounded-xl shadow-sm">
+              + เพิ่มรายการ / อัปเดตราคา
+            </button>
+          </div>
+
+          <!-- การ์ดสรุปสถานะ -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+              <p class="text-xs text-slate-500">รายการที่แสดงบนหน้าเว็บ</p>
+              <p class="text-2xl font-bold text-slate-900 mt-1"><span id="dash-active-count">0</span> รายการ</p>
+              <p class="text-[11px] text-emerald-600 mt-1">● ออนไลน์พร้อมให้ลูกค้าดู</p>
             </div>
-            <div>
-              <label class="block text-xs font-medium text-slate-600 mb-1">เงื่อนไข / รายละเอียด</label>
-              <input id="new-item-desc" type="text" placeholder="เช่น ชั่งตรงหน้าลาน มีคิวรถรับ" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+              <p class="text-xs text-slate-500">สถานะการรับลูกค้า / เปิดให้บริการ</p>
+              <p id="dash-open-status" class="text-lg font-bold text-emerald-700 mt-1">เปิดให้บริการปกติ</p>
+              <button onclick="toggleStoreOpen()" class="text-[11px] text-blue-600 hover:underline mt-1">คลิกเพื่อสลับสถานะเปิด/ปิด</button>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+              <p class="text-xs text-slate-500">ช่องทางรับลูกค้าหลัก</p>
+              <p id="dash-contact-summary" class="text-sm font-bold text-slate-900 mt-1"></p>
+              <button onclick="switchAdminTab('settings')" class="text-[11px] text-blue-600 hover:underline mt-1">แก้ไขเบอร์โทร / LINE</button>
             </div>
           </div>
-          <button onclick="addNewItem()" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-5 py-2 rounded-lg">
-            + เพิ่มรายการขึ้นหน้าเว็บทันที
-          </button>
-        </div>
 
-        <div class="space-y-3">
-          <h3 class="font-bold text-slate-800 border-b pb-2">3. รายการทั้งหมดในหมวดนี้</h3>
-          <div id="admin-items-list" class="divide-y divide-slate-200 border rounded-xl overflow-hidden"></div>
-        </div>
-      </div>
+          <!-- คำแนะนำการใช้งานสำหรับลูกค้า -->
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <h3 class="text-sm font-bold text-slate-900">ทางลัดจัดการด่วน</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <button onclick="switchAdminTab('items')" class="p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/40 text-left transition">
+                <p class="font-bold text-slate-900">📦 เพิ่ม / แก้ราคาสินค้า</p>
+                <p class="text-slate-500 mt-0.5">เปลี่ยนราคาห้องพัก เมนู หรือเรทรับซื้ออ้อย/มัน</p>
+              </button>
+              <button onclick="switchAdminTab('banner')" class="p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/40 text-left transition">
+                <p class="font-bold text-slate-900">🖼️ เปลี่ยนป้ายโปรโมชัน</p>
+                <p class="text-slate-500 mt-0.5">แก้ข้อความพาดหัวใหญ่บนสุดของหน้าเว็บ</p>
+              </button>
+              <button onclick="switchAdminTab('settings')" class="p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/40 text-left transition">
+                <p class="font-bold text-slate-900">⚙️ ตั้งค่าชื่อร้าน & ติดต่อ</p>
+                <p class="text-slate-500 mt-0.5">แก้ชื่อกิจการ ที่ตั้ง เบอร์โทร และไอดี LINE</p>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 2: จัดการรายการ / ราคา (Items & Pricing) -->
+        <section id="panel-items" class="admin-panel hidden space-y-6">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900">📦 จัดการรายการ / ราคา / เรทรับซื้อ</h2>
+            <p class="text-xs text-slate-500">เพิ่มรายการใหม่ แก้ไขราคาเดิม หรือเปิด-ปิดการแสดงผลได้ทันที</p>
+          </div>
+
+          <!-- ฟอร์มเพิ่มรายการใหม่ -->
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <h3 class="text-sm font-bold text-slate-800">+ เพิ่มรายการใหม่ขึ้นหน้าเว็บ</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div>
+                <label class="block text-xs font-medium text-slate-600 mb-1">ชื่อรายการ</label>
+                <input id="new-item-title" type="text" placeholder="เช่น แพริมน้ำ VIP / อ้อยสดคุณภาพดี" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-600 mb-1">ราคา / เรทราคา</label>
+                <input id="new-item-price" type="text" placeholder="เช่น 2,500 บาท / 1,350 บาทต่อตัน" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-600 mb-1">รายละเอียด / เงื่อนไข</label>
+                <input id="new-item-desc" type="text" placeholder="เช่น รวมอาหารเช้า / ชั่งตรงหน้าลาน" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm" />
+              </div>
+            </div>
+            <button onclick="addNewItem()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-xl">
+              บันทึกและแสดงบนหน้าเว็บ
+            </button>
+          </div>
+
+          <!-- รายการที่มีอยู่ -->
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="px-5 py-3.5 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
+              <h3 class="text-sm font-bold text-slate-800">รายการทั้งหมดในหมวดนี้</h3>
+              <span class="text-xs text-slate-500">แก้ราคาในช่องแล้วกด "บันทึก" ได้เลย</span>
+            </div>
+            <div id="admin-items-list" class="divide-y divide-slate-200"></div>
+          </div>
+        </section>
+
+        <!-- TAB 3: แบนเนอร์ & โปรโมชัน (Banner & Promo) -->
+        <section id="panel-banner" class="admin-panel hidden space-y-6">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900">🖼️ แบนเนอร์ & ข้อความหน้าแรก</h2>
+            <p class="text-xs text-slate-500">ปรับข้อความพาดหัวและป้ายโปรโมชันเด่นที่ลูกค้าเห็นเป็นอย่างแรก</p>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <div>
+              <label class="block text-xs font-medium text-slate-600 mb-1">ป้ายไฮไลต์ / โปรโมชัน (แถบสีเหลืองด้านบน)</label>
+              <input id="edit-badge" type="text" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-600 mb-1">หัวข้อหลักหน้าแรก (Headline)</label>
+              <input id="edit-title" type="text" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-600 mb-1">คำอธิบายรองใต้หัวข้อ</label>
+              <textarea id="edit-subtitle" rows="2" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm"></textarea>
+            </div>
+            <button onclick="saveBannerInfo()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-xl">
+              บันทึกแบนเนอร์หน้าแรก
+            </button>
+          </div>
+        </section>
+
+        <!-- TAB 4: ตั้งค่าเว็บไซต์ & ติดต่อ (Settings - ล่างสุดของ Sidebar) -->
+        <section id="panel-settings" class="admin-panel hidden space-y-6">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900">⚙️ ตั้งค่าเว็บไซต์ & ข้อมูลติดต่อ</h2>
+            <p class="text-xs text-slate-500">กำหนดชื่อกิจการ สถานะเปิด-ปิด และช่องทางติดต่อหลัก</p>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-slate-600 mb-1">ชื่อกิจการ / ร้านค้า</label>
+                <input id="edit-name" type="text" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-600 mb-1">สถานะการให้บริการ</label>
+                <select id="edit-is-open" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm bg-white">
+                  <option value="true">เปิดให้บริการ / รับออร์เดอร์ปกติ</option>
+                  <option value="false">ปิดปรับปรุงชั่วคราว / เต็มชั่วคราว</option>
+                </select>
+              </div>
+              <div class="md:col-span-2">
+                <label class="block text-xs font-medium text-slate-600 mb-1">ที่ตั้ง / พื้นที่ให้บริการ</label>
+                <input id="edit-address" type="text" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-600 mb-1">เบอร์โทรศัพท์ติดต่อ</label>
+                <input id="edit-phone" type="text" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-600 mb-1">ไอดี LINE</label>
+                <input id="edit-line" type="text" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm" />
+              </div>
+            </div>
+
+            <div class="pt-2 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100">
+              <button onclick="saveSettingsInfo()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-xl">
+                บันทึกการตั้งค่าทั้งหมด
+              </button>
+              <button onclick="resetDemoData()" class="text-xs text-slate-500 hover:text-red-600 underline">
+                รีเซ็ตข้อมูลตัวอย่างกลับเป็นค่าเริ่มต้น
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </main>
     </div>
   </div>
 
-  <!-- Footer ผู้ให้บริการในกาญจนบุรี -->
-  <footer class="bg-slate-900 text-slate-300 text-xs py-6 px-4 mt-10 border-t border-slate-800">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-300 text-xs py-5 px-4 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
       <p>ตัวอย่างเว็บ 4 กลุ่มธุรกิจใน จ.กาญจนบุรี — แพ็กเกจทำเว็บ + ระบบหลังบ้าน <strong class="text-amber-400">5,000 บาท</strong></p>
       <p>โทร <strong class="text-white">097-145-1628</strong> • LINE: <strong class="text-emerald-400">joeslave</strong></p>
     </div>
@@ -191,16 +334,17 @@
 
   <script>
     const bizLabels = {
-      resort: "1. รีสอร์ต / แพพัก",
-      shop: "2. ร้านของฝาก / คาเฟ่",
-      service: "3. ผู้รับเหมา / บริการ",
-      agri: "4. รับซื้ออ้อย / รับซื้อมันสำปะหลัง"
+      resort: "รีสอร์ต / แพพัก",
+      shop: "ร้านของฝาก / คาเฟ่",
+      service: "ผู้รับเหมา / บริการ",
+      agri: "รับซื้ออ้อย / มันสำปะหลัง"
     };
 
     const defaultData = {
       resort: {
         name: "แควน้อย ริเวอร์ไซด์ รีสอร์ต & แพพัก",
         location: "อ.ไทรโยค จ.กาญจนบุรี",
+        isOpen: true,
         badge: "จองตรงผ่านเว็บ ไม่ผ่านตัวกลาง",
         title: "พักผ่อนริมแม่น้ำแควน้อย วิวภูเขาและสายหมอกส่วนตัว",
         subtitle: "แพพักปรับอากาศส่วนตัวทุกหลัง พร้อมกิจกรรมล่องแพและอาหารเช้า เลือกดูห้องและเช็กเรทได้ทันที",
@@ -212,14 +356,15 @@
         phone: "097-145-1628",
         line: "joeslave",
         items: [
-          { title: "แพริมน้ำ River View (2 ท่าน)", price: "2,200 บาท / คืน", desc: "ระเบียงส่วนตัวติดริมน้ำ รวมอาหารเช้าและล่องแพ", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" },
-          { title: "พูลวิลล่าวิวเขา (4 ท่าน)", price: "4,500 บาท / คืน", desc: "สระว่ายน้ำส่วนตัว พื้นที่ปิ้งย่าง เหมาะสำหรับครอบครัว", img: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80" },
-          { title: "แพใหญ่กรุ๊ปเหมา (8-12 ท่าน)", price: "7,900 บาท / คืน", desc: "ลานสังสรรค์ส่วนตัว รองรับกรุ๊ปทัวร์และครอบครัวใหญ่", img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" }
+          { title: "แพริมน้ำ River View (2 ท่าน)", price: "2,200 บาท / คืน", desc: "ระเบียงส่วนตัวติดริมน้ำ รวมอาหารเช้าและล่องแพ", active: true, img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" },
+          { title: "พูลวิลล่าวิวเขา (4 ท่าน)", price: "4,500 บาท / คืน", desc: "สระว่ายน้ำส่วนตัว พื้นที่ปิ้งย่าง เหมาะสำหรับครอบครัว", active: true, img: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80" },
+          { title: "แพใหญ่กรุ๊ปเหมา (8-12 ท่าน)", price: "7,900 บาท / คืน", desc: "ลานสังสรรค์ส่วนตัว รองรับกรุ๊ปทัวร์และครอบครัวใหญ่", active: true, img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" }
         ]
       },
       shop: {
         name: "บ้านของฝากเมืองกาญจน์ & คาเฟ่",
         location: "อ.เมือง จ.กาญจนบุรี",
+        isOpen: true,
         badge: "รับจัดชุดของฝาก & สั่งล่วงหน้าได้ง่าย",
         title: "รวมของฝากขึ้นชื่อเมืองกาญจน์ คัดเกรดสดใหม่ทุกวัน",
         subtitle: "วุ้นมะพร้าวน้ำหอม ทองม้วนสด มะขามแช่อิ่ม และกาแฟท้องถิ่น ให้ลูกค้าดูเมนูและสั่งจองล่วงหน้าได้สะดวก",
@@ -231,14 +376,15 @@
         phone: "097-145-1628",
         line: "joeslave",
         items: [
-          { title: "เซ็ตของฝากพรีเมียม 5 อย่าง", price: "490 บาท / กล่อง", desc: "รวมขนมขึ้นชื่อเมืองกาญจน์ บรรจุกล่องพร้อมมอบเป็นของฝาก", img: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=800&q=80" },
-          { title: "วุ้นมะพร้าวน้ำหอมสูตรโบราณ (ยกลัง)", price: "350 บาท / ลัง", desc: "หวานกำลังดี หอมกลิ่นมะพร้าวน้ำหอมแท้ ทำสดใหม่", img: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=800&q=80" },
-          { title: "กาแฟดริปคั่วกลาง กาญจนบุรี", price: "280 บาท / แพ็ก", desc: "เมล็ดกาแฟคั่วสดใหม่ หอมนุ่ม ชงง่ายทั้งที่บ้านและที่ทำงาน", img: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" }
+          { title: "เซ็ตของฝากพรีเมียม 5 อย่าง", price: "490 บาท / กล่อง", desc: "รวมขนมขึ้นชื่อเมืองกาญจน์ บรรจุกล่องพร้อมมอบเป็นของฝาก", active: true, img: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=800&q=80" },
+          { title: "วุ้นมะพร้าวน้ำหอมสูตรโบราณ (ยกลัง)", price: "350 บาท / ลัง", desc: "หวานกำลังดี หอมกลิ่นมะพร้าวน้ำหอมแท้ ทำสดใหม่", active: true, img: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=800&q=80" },
+          { title: "กาแฟดริปคั่วกลาง กาญจนบุรี", price: "280 บาท / แพ็ก", desc: "เมล็ดกาแฟคั่วสดใหม่ หอมนุ่ม ชงง่ายทั้งที่บ้านและที่ทำงาน", active: true, img: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" }
         ]
       },
       service: {
         name: "กาญจน์ บิลเดอร์ & ดีไซน์ (รับสร้างบ้าน & บริการ)",
         location: "ให้บริการทั่ว จ.กาญจนบุรี",
+        isOpen: true,
         badge: "เข้าดูหน้างานและประเมินราคาก่อนตกลง",
         title: "รับสร้างบ้าน ต่อเติม รีโนเวทอาคาร ในพื้นที่กาญจนบุรี",
         subtitle: "รวมผลงานจริง แพ็กเกจงาน และข้อมูลติดต่อชัดเจน ช่วยให้เจ้าของบ้านและร้านค้าตัดสินใจง่ายขึ้น",
@@ -250,14 +396,15 @@
         phone: "097-145-1628",
         line: "joeslave",
         items: [
-          { title: "สร้างบ้านชั้นเดียว สไตล์โมเดิร์น", price: "เริ่มต้น 1.29 ล้านบาท", desc: "วางผังครบ 2 ห้องนอน 2 ห้องน้ำ พร้อมให้คำปรึกษาขั้นตอนก่อสร้าง", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" },
-          { title: "ต่อเติมครัวไทย & โรงจอดรถ", price: "เริ่มต้น 85,000 บาท", desc: "ออกแบบให้เข้ากับโครงสร้างเดิม งานเรียบร้อย ตรงเวลา", img: "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=800&q=80" },
-          { title: "รีโนเวทอาคารพาณิชย์ / ร้านค้า / คาเฟ่", price: "ประเมินตามหน้างาน", desc: "ปรับโฉมหน้าร้านและพื้นที่ใช้งานให้ทันสมัย ดึงดูดลูกค้า", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" }
+          { title: "สร้างบ้านชั้นเดียว สไตล์โมเดิร์น", price: "เริ่มต้น 1.29 ล้านบาท", desc: "วางผังครบ 2 ห้องนอน 2 ห้องน้ำ พร้อมให้คำปรึกษาขั้นตอนก่อสร้าง", active: true, img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" },
+          { title: "ต่อเติมครัวไทย & โรงจอดรถ", price: "เริ่มต้น 85,000 บาท", desc: "ออกแบบให้เข้ากับโครงสร้างเดิม งานเรียบร้อย ตรงเวลา", active: true, img: "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=800&q=80" },
+          { title: "รีโนเวทอาคารพาณิชย์ / ร้านค้า / คาเฟ่", price: "ประเมินตามหน้างาน", desc: "ปรับโฉมหน้าร้านและพื้นที่ใช้งานให้ทันสมัย ดึงดูดลูกค้า", active: true, img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" }
         ]
       },
       agri: {
         name: "ลานรับซื้ออ้อย & มันสำปะหลังเมืองกาญจน์",
         location: "โซนพนมทวน • ท่าม่วง • ท่ามะกา • บ่อพลอย จ.กาญจนบุรี",
+        isOpen: true,
         badge: "อัปเดตราคารับซื้อรายวัน • เครื่องชั่งได้มาตรฐาน",
         title: "รับซื้ออ้อยสด-อ้อยไฟไหม้ และมันสำปะหลังสดถึงลาน",
         subtitle: "มีเว็บกลางให้เกษตรกรเช็กเรทรับซื้อประจำวัน คิวรถ และจุดรับซื้อได้ตลอด 24 ชม. ลดคำถามซ้ำๆ ทางโทรศัพท์",
@@ -269,29 +416,32 @@
         phone: "097-145-1628",
         line: "joeslave",
         items: [
-          { title: "อ้อยสดคุณภาพดี (เกรดมาตรฐาน)", price: "1,350 บาท / ตัน (ตัวอย่าง)", desc: "ตัดสด สะอาด ไม่ปนดิน/ใบแห้ง มีคิวรถและจุดชั่งชัดเจน", img: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=80" },
-          { title: "อ้อยไฟไหม้ / อ้อยค้างไร่", price: "ตามเรทโรงงานประจำวัน", desc: "แจ้งเรทรับซื้อรายวันชัดเจน นัดหมายเวลาเข้าส่งล่วงหน้าได้", img: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800&q=80" },
-          { title: "มันสำปะหลังสด (คิดตาม % แป้ง)", price: "2.85 บาท / กก. (ฐาน 25%)", desc: "ตรวจเช็กเปอร์เซ็นต์แป้งโปร่งใส ชั่งตรง จ่ายเงินตรงเวลา", img: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=800&q=80" }
+          { title: "อ้อยสดคุณภาพดี (เกรดมาตรฐาน)", price: "1,350 บาท / ตัน (ตัวอย่าง)", desc: "ตัดสด สะอาด ไม่ปนดิน/ใบแห้ง มีคิวรถและจุดชั่งชัดเจน", active: true, img: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=80" },
+          { title: "อ้อยไฟไหม้ / อ้อยค้างไร่", price: "ตามเรทโรงงานประจำวัน", desc: "แจ้งเรทรับซื้อรายวันชัดเจน นัดหมายเวลาเข้าส่งล่วงหน้าได้", active: true, img: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800&q=80" },
+          { title: "มันสำปะหลังสด (คิดตาม % แป้ง)", price: "2.85 บาท / กก. (ฐาน 25%)", desc: "ตรวจเช็กเปอร์เซ็นต์แป้งโปร่งใส ชั่งตรง จ่ายเงินตรงเวลา", active: true, img: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=800&q=80" }
         ]
       }
     };
 
     let currentBiz = 'resort';
-    let currentMode = 'front';
-    let appData = JSON.parse(localStorage.getItem('kanWebDemoDataV2')) || JSON.parse(JSON.stringify(defaultData));
+    let currentMode = 'admin';
+    let currentAdminTab = 'dashboard';
+    let appData = JSON.parse(localStorage.getItem('kanWebDemoDataV3')) || JSON.parse(JSON.stringify(defaultData));
 
     function saveData() {
-      localStorage.setItem('kanWebDemoDataV2', JSON.stringify(appData));
+      localStorage.setItem('kanWebDemoDataV3', JSON.stringify(appData));
     }
 
     function render() {
       const data = appData[currentBiz];
 
+      // ปุ่มเลือก 4 กลุ่มธุรกิจ
       document.querySelectorAll('.biz-btn').forEach(btn => {
-        btn.className = 'biz-btn px-3 py-1.5 rounded-lg text-xs font-medium transition text-slate-300 hover:text-white';
+        btn.className = 'biz-btn px-2.5 py-1.5 rounded-lg text-xs font-medium transition text-slate-300 hover:text-white';
       });
-      document.getElementById('btn-' + currentBiz).className = 'biz-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition bg-amber-400 text-slate-950 shadow';
+      document.getElementById('btn-' + currentBiz).className = 'biz-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold transition bg-amber-400 text-slate-950 shadow';
 
+      // ปุ่มสลับหน้าเว็บ / หลังบ้าน
       if (currentMode === 'front') {
         document.getElementById('frontend-view').classList.remove('hidden');
         document.getElementById('admin-view').classList.add('hidden');
@@ -302,11 +452,20 @@
         document.getElementById('admin-view').classList.remove('hidden');
         document.getElementById('mode-front').className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white';
         document.getElementById('mode-admin').className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-400 text-slate-950';
-        document.getElementById('admin-biz-label').textContent = bizLabels[currentBiz];
       }
 
+      // Render หน้าบ้าน
       document.getElementById('site-name').textContent = data.name;
       document.getElementById('site-location').textContent = "📍 " + data.location;
+      const statusBadge = document.getElementById('site-status-badge');
+      if (data.isOpen) {
+        statusBadge.textContent = "● เปิดให้บริการ";
+        statusBadge.className = "text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800";
+      } else {
+        statusBadge.textContent = "● ปิดชั่วคราว";
+        statusBadge.className = "text-xs font-semibold px-2.5 py-0.5 rounded-full bg-red-100 text-red-700";
+      }
+
       document.getElementById('hero-badge').textContent = data.badge;
       document.getElementById('hero-title').textContent = data.title;
       document.getElementById('hero-subtitle').textContent = data.subtitle;
@@ -320,8 +479,9 @@
       document.getElementById('contact-line').textContent = data.line;
       document.getElementById('site-tel-link').href = "tel:" + data.phone.replace(/[^0-9]/g, '');
 
+      const visibleItems = data.items.filter(i => i.active !== false);
       const grid = document.getElementById('items-grid');
-      grid.innerHTML = data.items.map(item => `
+      grid.innerHTML = visibleItems.map(item => `
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between hover:shadow-md transition">
           <div>
             <img src="${item.img || 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80'}" alt="${item.title}" class="w-full h-48 object-cover" />
@@ -339,22 +499,66 @@
         </div>
       `).join('');
 
-      document.getElementById('edit-name').value = data.name;
+      // Render Sidebar & Admin Panels
+      document.getElementById('sidebar-biz-name').textContent = data.name;
+      document.getElementById('sidebar-biz-tag').textContent = bizLabels[currentBiz];
+      document.getElementById('sidebar-item-count').textContent = data.items.length;
+
+      document.querySelectorAll('.admin-nav-btn').forEach(btn => {
+        btn.className = 'admin-nav-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition text-left text-slate-300 hover:bg-slate-800 hover:text-white';
+      });
+      const activeNav = document.getElementById('tab-' + currentAdminTab);
+      if (activeNav) {
+        activeNav.className = 'admin-nav-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition text-left bg-amber-400 text-slate-950 shadow';
+      }
+
+      document.querySelectorAll('.admin-panel').forEach(p => p.classList.add('hidden'));
+      document.getElementById('panel-' + currentAdminTab).classList.remove('hidden');
+
+      // Dashboard Summary
+      document.getElementById('dash-active-count').textContent = visibleItems.length;
+      const dashStatus = document.getElementById('dash-open-status');
+      dashStatus.textContent = data.isOpen ? "เปิดให้บริการปกติ" : "ปิดปรับปรุงชั่วคราว";
+      dashStatus.className = data.isOpen ? "text-lg font-bold text-emerald-700 mt-1" : "text-lg font-bold text-red-600 mt-1";
+      document.getElementById('dash-contact-summary').textContent = `โทร ${data.phone} • LINE: ${data.line}`;
+
+      // Banner Form
       document.getElementById('edit-badge').value = data.badge;
       document.getElementById('edit-title').value = data.title;
+      document.getElementById('edit-subtitle').value = data.subtitle;
+
+      // Settings Form
+      document.getElementById('edit-name').value = data.name;
+      document.getElementById('edit-is-open').value = String(data.isOpen);
+      document.getElementById('edit-address').value = data.address;
       document.getElementById('edit-phone').value = data.phone;
       document.getElementById('edit-line').value = data.line;
 
+      // Items List
       const adminList = document.getElementById('admin-items-list');
       adminList.innerHTML = data.items.map((item, idx) => `
-        <div class="p-4 flex items-center justify-between gap-4 bg-slate-50">
-          <div>
-            <p class="font-semibold text-sm text-slate-900">${item.title} <span class="text-emerald-700">(${item.price})</span></p>
+        <div class="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white">
+          <div class="space-y-1 flex-1">
+            <div class="flex items-center gap-2 flex-wrap">
+              <p class="font-semibold text-sm text-slate-900">${item.title}</p>
+              <span class="text-[11px] px-2 py-0.5 rounded-full ${item.active !== false ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-600'}">
+                ${item.active !== false ? 'แสดงหน้าเว็บ' : 'ซ่อนอยู่'}
+              </span>
+            </div>
             <p class="text-xs text-slate-500">${item.desc}</p>
+            <div class="pt-1 flex items-center gap-2">
+              <input id="price-input-${idx}" type="text" value="${item.price}" class="border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-semibold text-emerald-700 w-48" />
+              <button onclick="updateItemPrice(${idx})" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white px-2.5 py-1 rounded-lg">บันทึกราคา</button>
+            </div>
           </div>
-          <button onclick="deleteItem(${idx})" class="shrink-0 text-xs bg-red-100 text-red-700 hover:bg-red-200 px-3 py-1.5 rounded-lg font-medium">
-            ลบรายการ
-          </button>
+          <div class="flex items-center gap-2 shrink-0">
+            <button onclick="toggleItemActive(${idx})" class="text-xs border border-slate-300 hover:bg-slate-100 px-3 py-1.5 rounded-lg font-medium">
+              ${item.active !== false ? 'ซ่อน' : 'เปิดแสดง'}
+            </button>
+            <button onclick="deleteItem(${idx})" class="text-xs bg-red-50 text-red-700 hover:bg-red-100 px-3 py-1.5 rounded-lg font-medium">
+              ลบ
+            </button>
+          </div>
         </div>
       `).join('');
     }
@@ -369,15 +573,36 @@
       render();
     }
 
-    function saveStoreInfo() {
+    function switchAdminTab(tab) {
+      currentAdminTab = tab;
+      render();
+    }
+
+    function toggleStoreOpen() {
+      appData[currentBiz].isOpen = !appData[currentBiz].isOpen;
+      saveData();
+      render();
+    }
+
+    function saveBannerInfo() {
       const data = appData[currentBiz];
-      data.name = document.getElementById('edit-name').value;
       data.badge = document.getElementById('edit-badge').value;
       data.title = document.getElementById('edit-title').value;
+      data.subtitle = document.getElementById('edit-subtitle').value;
+      saveData();
+      alert('อัปเดตแบนเนอร์หน้าแรกเรียบร้อยแล้วครับ');
+      render();
+    }
+
+    function saveSettingsInfo() {
+      const data = appData[currentBiz];
+      data.name = document.getElementById('edit-name').value;
+      data.isOpen = document.getElementById('edit-is-open').value === 'true';
+      data.address = document.getElementById('edit-address').value;
       data.phone = document.getElementById('edit-phone').value;
       data.line = document.getElementById('edit-line').value;
       saveData();
-      alert('บันทึกข้อมูลเรียบร้อยแล้ว กด "หน้าเว็บลูกค้า" ด้านบนเพื่อดูผลได้เลยครับ');
+      alert('บันทึกการตั้งค่าเว็บไซต์เรียบร้อยแล้วครับ');
       render();
     }
 
@@ -393,6 +618,7 @@
         title,
         price,
         desc: desc || 'รายการใหม่ที่เพิ่มจากระบบหลังบ้าน',
+        active: true,
         img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80'
       });
       document.getElementById('new-item-title').value = '';
@@ -400,6 +626,22 @@
       document.getElementById('new-item-desc').value = '';
       saveData();
       alert('เพิ่มรายการขึ้นหน้าเว็บเรียบร้อยแล้วครับ');
+      render();
+    }
+
+    function updateItemPrice(index) {
+      const val = document.getElementById('price-input-' + index).value.trim();
+      if (!val) return;
+      appData[currentBiz].items[index].price = val;
+      saveData();
+      alert('อัปเดตราคาเรียบร้อยแล้วครับ');
+      render();
+    }
+
+    function toggleItemActive(index) {
+      const item = appData[currentBiz].items[index];
+      item.active = item.active === false ? true : false;
+      saveData();
       render();
     }
 
