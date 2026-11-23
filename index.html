@@ -8,12 +8,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Prompt', sans-serif; }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.94) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .animate-pop { animation: popIn 0.25s ease-out forwards; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
   <!-- แถบควบคุมหลักด้านบน (เลือก 4 กลุ่มธุรกิจ & สลับหน้าบ้าน/หลังบ้าน) -->
-  <div class="sticky top-0 z-50 bg-slate-900 text-white shadow-lg border-b border-slate-700">
+  <div class="sticky top-0 z-40 bg-slate-900 text-white shadow-lg border-b border-slate-700">
     <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-col lg:flex-row items-center justify-between gap-2.5">
       <div class="flex items-center gap-2 shrink-0">
         <span class="bg-emerald-500 text-slate-950 text-xs font-bold px-2.5 py-0.5 rounded-full">LIVE DEMO</span>
@@ -119,14 +124,12 @@
       <!-- เมนูฝั่งซ้าย (Left Sidebar) -->
       <aside class="w-full md:w-64 bg-slate-900 text-slate-200 flex flex-col justify-between shrink-0 border-r border-slate-800">
         <div>
-          <!-- หัว Sidebar -->
           <div class="p-4 border-b border-slate-800">
             <p class="text-[11px] uppercase tracking-wider text-slate-400">ระบบจัดการเว็บไซต์</p>
             <p id="sidebar-biz-name" class="text-sm font-bold text-white truncate mt-0.5"></p>
             <span id="sidebar-biz-tag" class="inline-block mt-1.5 text-[11px] bg-slate-800 text-amber-400 px-2 py-0.5 rounded"></span>
           </div>
 
-          <!-- เมนูหลักฝั่งซ้าย -->
           <nav aria-label="เมนูระบบหลังบ้าน" class="p-3 space-y-1">
             <button onclick="switchAdminTab('dashboard')" id="tab-dashboard" class="admin-nav-btn w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition text-left">
               <span>📊</span>
@@ -143,7 +146,6 @@
           </nav>
         </div>
 
-        <!-- เมนูล่างสุดของ Sidebar (ตั้งค่า & ดูหน้าเว็บ) -->
         <div class="p-3 border-t border-slate-800 space-y-1 bg-slate-950/40">
           <button onclick="switchAdminTab('settings')" id="tab-settings" class="admin-nav-btn w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition text-left">
             <span>⚙️</span>
@@ -156,10 +158,10 @@
         </div>
       </aside>
 
-      <!-- พื้นที่ทำงานหลักฝั่งขวา (Main Content Panel) -->
+      <!-- พื้นที่ทำงานหลักฝั่งขวา -->
       <main class="flex-1 p-4 sm:p-6 md:p-8">
 
-        <!-- TAB 1: ภาพรวมระบบ (Dashboard) -->
+        <!-- TAB 1: ภาพรวมระบบ -->
         <section id="panel-dashboard" class="admin-panel space-y-6">
           <div class="flex flex-wrap items-center justify-between gap-3">
             <div>
@@ -171,7 +173,6 @@
             </button>
           </div>
 
-          <!-- การ์ดสรุปสถานะ -->
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
               <p class="text-xs text-slate-500">รายการที่แสดงบนหน้าเว็บ</p>
@@ -190,7 +191,6 @@
             </div>
           </div>
 
-          <!-- คำแนะนำการใช้งานสำหรับลูกค้า -->
           <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
             <h3 class="text-sm font-bold text-slate-900">ทางลัดจัดการด่วน</h3>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
@@ -210,14 +210,13 @@
           </div>
         </section>
 
-        <!-- TAB 2: จัดการรายการ / ราคา (Items & Pricing) -->
+        <!-- TAB 2: จัดการรายการ / ราคา -->
         <section id="panel-items" class="admin-panel hidden space-y-6">
           <div>
             <h2 class="text-xl font-bold text-slate-900">📦 จัดการรายการ / ราคา / เรทรับซื้อ</h2>
             <p class="text-xs text-slate-500">เพิ่มรายการใหม่ แก้ไขราคาเดิม หรือเปิด-ปิดการแสดงผลได้ทันที</p>
           </div>
 
-          <!-- ฟอร์มเพิ่มรายการใหม่ -->
           <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
             <h3 class="text-sm font-bold text-slate-800">+ เพิ่มรายการใหม่ขึ้นหน้าเว็บ</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -239,7 +238,6 @@
             </button>
           </div>
 
-          <!-- รายการที่มีอยู่ -->
           <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div class="px-5 py-3.5 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
               <h3 class="text-sm font-bold text-slate-800">รายการทั้งหมดในหมวดนี้</h3>
@@ -249,7 +247,7 @@
           </div>
         </section>
 
-        <!-- TAB 3: แบนเนอร์ & โปรโมชัน (Banner & Promo) -->
+        <!-- TAB 3: แบนเนอร์ & โปรโมชัน -->
         <section id="panel-banner" class="admin-panel hidden space-y-6">
           <div>
             <h2 class="text-xl font-bold text-slate-900">🖼️ แบนเนอร์ & ข้อความหน้าแรก</h2>
@@ -275,7 +273,7 @@
           </div>
         </section>
 
-        <!-- TAB 4: ตั้งค่าเว็บไซต์ & ติดต่อ (Settings - ล่างสุดของ Sidebar) -->
+        <!-- TAB 4: ตั้งค่าเว็บไซต์ & ติดต่อ -->
         <section id="panel-settings" class="admin-panel hidden space-y-6">
           <div>
             <h2 class="text-xl font-bold text-slate-900">⚙️ ตั้งค่าเว็บไซต์ & ข้อมูลติดต่อ</h2>
@@ -321,6 +319,65 @@
         </section>
 
       </main>
+    </div>
+  </div>
+
+  <!-- ปุ่มลอยมุมขวาล่าง สำหรับกดเปิดแบนเนอร์ติดต่อทำเว็บได้ตลอดเวลา -->
+  <button onclick="openPromoPopup()" class="fixed bottom-5 right-5 z-40 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs sm:text-sm px-4 py-3 rounded-full shadow-xl border-2 border-slate-900 flex items-center gap-2 transition hover:scale-105">
+    <span>🔥 สนใจทำเว็บแบบนี้ 5,000.-</span>
+  </button>
+
+  <!-- ================= POP-UP แบนเนอร์โฆษณารับทำเว็บไซต์ ================= -->
+  <div id="promo-popup" onclick="closePromoPopupOnBackdrop(event)" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="animate-pop relative w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl border border-amber-400/40 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white">
+
+      <!-- ปุ่มปิด (X) -->
+      <button onclick="closePromoPopup()" aria-label="ปิดหน้าต่างโฆษณา" class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center text-sm font-bold transition">
+        ✕
+      </button>
+
+      <!-- ส่วนหัวแบนเนอร์ -->
+      <div class="p-6 sm:p-8 space-y-5">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-xl bg-amber-400 text-slate-950 font-extrabold flex items-center justify-center text-base shadow">
+            KW
+          </div>
+          <div>
+            <span class="text-[11px] uppercase tracking-wider text-amber-400 font-semibold">บริการจัดทำเว็บไซต์ธุรกิจ จ.กาญจนบุรี</span>
+            <p class="text-xs text-slate-300">ดูแลใกล้ชิด นัดคุยงานในพื้นที่ได้จริง</p>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="text-2xl sm:text-3xl font-bold leading-snug">
+            ครบจบ พร้อมใช้งาน!<br />
+            <span class="text-amber-400">เว็บไซต์ธุรกิจ + ระบบหลังบ้าน</span><br />
+            ในราคา <span class="underline decoration-amber-400">5,000 บาท*</span>
+          </h3>
+          <p class="text-xs text-slate-300">(เหมาะกับธุรกิจที่เพิ่งเริ่มต้นหรือต้องการมีเว็บไซต์เป็นของตัวเอง)</p>
+        </div>
+
+        <!-- จุดเด่น 3 ข้อ -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 space-y-2 text-xs sm:text-sm text-slate-100">
+          <p>✅ <strong>แก้ไขข้อมูล/ราคาเองได้ 24 ชม.</strong> ผ่านระบบหลังบ้านที่ใช้งานง่าย</p>
+          <p>✅ <strong>รองรับมือถือ 100%</strong> พร้อมปุ่มโทรออกและทัก LINE ทันที</p>
+          <p>✅ <strong>ชื่อโดเมนเป็นกรรมสิทธิ์ของลูกค้า 100%</strong> ไม่มีบวกเพิ่มจุกจิก</p>
+        </div>
+
+        <!-- ปุ่มกดติดต่อทันที -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+          <a href="tel:0971451628" class="flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold py-3 px-4 rounded-xl text-sm shadow-lg transition">
+            📞 โทร 097-145-1628
+          </a>
+          <button onclick="copyLineId()" id="popup-line-btn" class="flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 px-4 rounded-xl text-sm shadow-lg transition">
+            💬 LINE : joeslave (กดคัดลอก)
+          </button>
+        </div>
+
+        <p class="text-center text-[11px] text-slate-400">
+          *ราคา 5,000 บาท ไม่รวมค่าจดชื่อโดเมนรายปีของลูกค้า • เว็บตัวอย่าง: <span class="text-slate-200">demo.onloq.shop</span>
+        </p>
+      </div>
     </div>
   </div>
 
@@ -424,7 +481,7 @@
     };
 
     let currentBiz = 'resort';
-    let currentMode = 'admin';
+    let currentMode = 'front';
     let currentAdminTab = 'dashboard';
     let appData = JSON.parse(localStorage.getItem('kanWebDemoDataV3')) || JSON.parse(JSON.stringify(defaultData));
 
@@ -432,16 +489,45 @@
       localStorage.setItem('kanWebDemoDataV3', JSON.stringify(appData));
     }
 
+    function openPromoPopup() {
+      document.getElementById('promo-popup').classList.remove('hidden');
+    }
+
+    function closePromoPopup() {
+      document.getElementById('promo-popup').classList.add('hidden');
+    }
+
+    function closePromoPopupOnBackdrop(e) {
+      if (e.target.id === 'promo-popup') closePromoPopup();
+    }
+
+    function copyLineId() {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText('joeslave');
+      }
+      const btn = document.getElementById('popup-line-btn');
+      btn.textContent = '✅ คัดลอก ID: joeslave แล้ว';
+      setTimeout(() => {
+        btn.textContent = '💬 LINE : joeslave (กดคัดลอก)';
+      }, 2500);
+    }
+
+    // เด้ง Pop-up โฆษณาอัตโนมัติหลังลูกค้าเปิดเว็บดูไปแล้ว 10 วินาที
+    setTimeout(() => {
+      if (!sessionStorage.getItem('kanPromoShown')) {
+        openPromoPopup();
+        sessionStorage.setItem('kanPromoShown', '1');
+      }
+    }, 10000);
+
     function render() {
       const data = appData[currentBiz];
 
-      // ปุ่มเลือก 4 กลุ่มธุรกิจ
       document.querySelectorAll('.biz-btn').forEach(btn => {
         btn.className = 'biz-btn px-2.5 py-1.5 rounded-lg text-xs font-medium transition text-slate-300 hover:text-white';
       });
       document.getElementById('btn-' + currentBiz).className = 'biz-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold transition bg-amber-400 text-slate-950 shadow';
 
-      // ปุ่มสลับหน้าเว็บ / หลังบ้าน
       if (currentMode === 'front') {
         document.getElementById('frontend-view').classList.remove('hidden');
         document.getElementById('admin-view').classList.add('hidden');
@@ -454,7 +540,6 @@
         document.getElementById('mode-admin').className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-400 text-slate-950';
       }
 
-      // Render หน้าบ้าน
       document.getElementById('site-name').textContent = data.name;
       document.getElementById('site-location').textContent = "📍 " + data.location;
       const statusBadge = document.getElementById('site-status-badge');
@@ -499,7 +584,6 @@
         </div>
       `).join('');
 
-      // Render Sidebar & Admin Panels
       document.getElementById('sidebar-biz-name').textContent = data.name;
       document.getElementById('sidebar-biz-tag').textContent = bizLabels[currentBiz];
       document.getElementById('sidebar-item-count').textContent = data.items.length;
@@ -515,26 +599,22 @@
       document.querySelectorAll('.admin-panel').forEach(p => p.classList.add('hidden'));
       document.getElementById('panel-' + currentAdminTab).classList.remove('hidden');
 
-      // Dashboard Summary
       document.getElementById('dash-active-count').textContent = visibleItems.length;
       const dashStatus = document.getElementById('dash-open-status');
       dashStatus.textContent = data.isOpen ? "เปิดให้บริการปกติ" : "ปิดปรับปรุงชั่วคราว";
       dashStatus.className = data.isOpen ? "text-lg font-bold text-emerald-700 mt-1" : "text-lg font-bold text-red-600 mt-1";
       document.getElementById('dash-contact-summary').textContent = `โทร ${data.phone} • LINE: ${data.line}`;
 
-      // Banner Form
       document.getElementById('edit-badge').value = data.badge;
       document.getElementById('edit-title').value = data.title;
       document.getElementById('edit-subtitle').value = data.subtitle;
 
-      // Settings Form
       document.getElementById('edit-name').value = data.name;
       document.getElementById('edit-is-open').value = String(data.isOpen);
       document.getElementById('edit-address').value = data.address;
       document.getElementById('edit-phone').value = data.phone;
       document.getElementById('edit-line').value = data.line;
 
-      // Items List
       const adminList = document.getElementById('admin-items-list');
       adminList.innerHTML = data.items.map((item, idx) => `
         <div class="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white">
